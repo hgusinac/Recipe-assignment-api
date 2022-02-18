@@ -1,11 +1,19 @@
 package harisgusinac.com.recipesolution.model;
 
-import javax.persistence.Entity;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "ingredients")
 public class Ingredient {
 
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false,name = "id")
     private String id;
+    @Column(unique = true,name="ingredient_name")
     private String ingredientName;
 
     public Ingredient(String id, String ingredientName) {
